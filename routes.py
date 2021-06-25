@@ -1,10 +1,12 @@
 import os
-
+import time
 import cv2
 
 from main import app
 from flask import Flask, render_template, send_from_directory, request, redirect, url_for, Response, json
 from global_def import *
+
+video = cv2.VideoCapture(0)
 
 @app.route("/")
 def index():
@@ -13,7 +15,7 @@ def index():
 
 def gen_video():
 
-    video = cv2.VideoCapture(0)
+    #video = cv2.VideoCapture(0)
     while True:
         ret, frame = video.read()
         if not ret:
@@ -23,6 +25,7 @@ def gen_video():
             frame = buffer.tobytes()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        time.sleep(0.03)
 
 @app.route('/video_feed')
 def video_feed():
