@@ -17,6 +17,6 @@ def print_hi(name):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('PyCharm')
-    app.run(debug=True, port=flask_server_port)
+    app.run(debug=False,host='0.0.0.0', port=flask_server_port, threaded=True)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
